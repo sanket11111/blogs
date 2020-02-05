@@ -4,11 +4,14 @@ var ObjectId = require('mongodb').ObjectID;
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
+
 // Use connect method to connect to the server
 
 const connectdb = (dbName) => {
     return MongoClient.connect(url,{useNewUrlParser: true}, { useUnifiedTopology: true }).then(client => client.db(dbName))
 }
+const temp = () => {connectdb('testdb').then(db=>db.repairDatabase())}
+temp()
 
 // function getAllBlogs () {
 //     return connectdb().then(db => {

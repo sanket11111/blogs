@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+  .divider {
+    height: 100%;
+    width: 2px;
+    min-height: 400px;
+    background-color: grey;
+  }
+</style>
+<body>
+  <div class="container mt-5 pt-5">
+    <div class="row">
+      <div class="col-4">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          {{!-- <li class="nav-item">
+            <a class="nav-link" href="/add">Add</a>
+          </li> --}}
+          {{#each blogs}}
+            <li class="nav-item">
+              {{!-- these 3 lines will run for each blog object, for each blog object, uska _id uthao and '/'pe blogid ki value banake query mei  bhejdo  --}}
+              {{!-- '/'pe request aane pe check kar lenge query mei koi value aai ho toh database mei _id == blogid vaali blog ko display  kar denge,query mei kuch nahi hone se 'welcome' display kardo --}}
+              <a class="nav-link" href="?blog={{_id}}">{{title}}</a>
+            </li>
+          {{/each}}
+          {{!-- sign in as admin --}}
+           <li class="nav-item">
+            <button type="button" class="btn btn-primary" ><a  style="color: black"class="nav-link" href="/signIn">sign in as admin</a></button>
+           </li>
+        </ul>
+      </div>
+      <div class="col-1">
+        <div class="divider"></div>
+      </div>
+      <div class="col-7">
+        {{#if selectedBlog}}
+          <h3>{{selectedBlog.title}}</h3>
+          <p>
+            {{selectedBlog.body}}
+          </p>
+        {{else}}
+          <div class="jumbotron">
+            <h1 class="display-4">Welcome!</h1>
+            <p class="lead">This is sample blog i made in class.</p>
+            <hr class="my-4">
+            <p>It uses HTML, CSS, Node, Express and Mongo.</p>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+
+</html>
