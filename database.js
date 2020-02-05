@@ -8,10 +8,10 @@ const url = 'mongodb://localhost:27017';
 // Use connect method to connect to the server
 
 const connectdb = (dbName) => {
-    return MongoClient.connect(url,{useNewUrlParser: true}, { useUnifiedTopology: true }).then(client => client.db(dbName))
+    return MongoClient.connect(url,{useNewUrlParser: true, useUnifiedTopology: true }).then(client => client.db(dbName))
 }
-const temp = () => {connectdb('testdb').then(db=>db.repairDatabase())}
-temp()
+// const temp = () => {connectdb('testdb').then(db=>db.repairDatabase())}
+// temp()
 
 // function getAllBlogs () {
 //     return connectdb().then(db => {
@@ -58,6 +58,8 @@ const getAllUsers = () =>
   .then(collection => collection.find())
   .then(cursor => cursor.toArray())
 //   .then(array => array.forEach(user => console.log(user)))
+
+//   getAllUsers()
   
 //   insertuser(user)
 
